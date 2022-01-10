@@ -46,9 +46,8 @@
             </div>         
 
             <div class="form-group">
-                 <label class="white">users</label>                                              
-                    <select multiple="multiple" name="selectedUsers[]" class="form-control" >
-                        <option value="">Any users</option> 
+                 <label class="white">Users</label>                                              
+                    <select multiple="multiple" name="selectedUsers[]" class="form-control" >                         
                             @foreach ($users as $user)
                            <option value="{{ $user->id }}" > {{ $user->name }}</option>
                            @endforeach 
@@ -59,7 +58,7 @@
             </select>
 
 
-            {{ $priorities }}
+            
         </div>
         
         <div class="col-xs-12 col-sm-12 col-md-12 text-center">

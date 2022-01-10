@@ -99,7 +99,8 @@ class TaskController extends Controller
     {
         $request->validate([
             'name' => 'required',  
-            'priority_id' => 'required',         
+            'priority_id' => 'required',  
+            'selectedUsers' => 'required',       
         ]);
   
         $task->update($request->all());
