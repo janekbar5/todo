@@ -45,17 +45,27 @@
                  </select>  
             </div>         
 
-            <div class="form-group">
+            <!-- <div class="form-group">
                  <label class="white">Users</label>                                              
                     <select multiple="multiple" name="selectedUsers[]" class="form-control" >                         
                             @foreach ($users as $user)
                            <option value="{{ $user->id }}" > {{ $user->name }}</option>
                            @endforeach 
-                 </select>  
-            </div> 
+                    </select>  
+            </div>  -->
+
+
+            <div class="form-group mb-3">
+              <label for="select2Multiple">Multiple Tags</label>
+              <select class="select2-multiple form-control" name="selectedUsers[]" multiple="multiple" id="select2Multiple">
+                 @foreach ($users as $user)
+                <option value="{{ $user->id }}" > {{ $user->name }}</option>
+                 @endforeach                
+              </select>
+            </div>
 
            
-            </select>
+            
 
 
             
@@ -67,4 +77,21 @@
     </div>
    
 </form>
+
+
+
+
+       
+      <script>
+        $(document).ready(function() {
+            // Select2 Multiple
+            $('.select2-multiple').select2({
+                placeholder: "Select",
+                allowClear: true
+            });
+
+        });
+
+    </script>
+
 @endsection

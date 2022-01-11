@@ -27,8 +27,7 @@
         @csrf
         @method('PUT')
    
-         <div class="row">
-            
+            <div class="row">            
                 <div class="form-group">
                     <strong>Name:</strong>
                     <input type="text" name="name" value="{{ $task->name }}" class="form-control" placeholder="Name">
@@ -42,33 +41,41 @@
                             @foreach ($priorities as $priority)
                                 <option value="{{ $priority->value }}" @if($priority->value == $task->priority_id ) selected  @endif> {{ $priority->description }}</option>
                             @endforeach 
+                        </select>    
                  </div>  
             </div>  
 
-            <div class="row">                        
-                        <label>Users</label></br>
-                        @foreach ($users->chunk(4) as $chunk2)
-                        <div class="col-md-3">
-                            <div class="form-group">
-                                @foreach ($chunk2 as $usr)
-                                <label>
-                                    <input type="checkbox" class="flat-red" name="selectedUsers[]" value="{{ $usr->id }}" @foreach($task->users as $i) @if($usr->id == $i->id) checked @endif @endforeach>
-                                           {{ $usr->name }} 
-                                </label><br>
-                                @endforeach
-                            </div>
-                        </div>
-                        @endforeach 
-                        
-             </div> 
+
+           <div class="row">
+              <label for="select2Multiple">Multiple Tags</label>
+              <select class="select2-multiple form-control" name="selectedUsers[]" multiple="multiple" id="select2Multiple">
+                 @foreach ($users as $user)
+                <option value="{{ $user->id }}" @foreach($task->users as $i) @if($user->id == $i->id) selected @endif @endforeach> {{ $user->name }}</option>
+                 @endforeach                
+              </select>
+            </div>
+
             
             
             <div class="col-xs-12 col-sm-12 col-md-12 text-center">
               <button type="submit" class="btn btn-primary">Submit</button>
             </div>
-        </div>
+        
    
     </form>
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.6-rc.0/css/select2.min.css" rel="stylesheet" />
+
+
+
+
+      <script>
+        $(document).ready(function() {
+            // Select2 Multiple
+            $('.select2-multiple').select2({
+                placeholder: "Select",
+                allowClear: true
+            });
+
+        });
+
+    </script>
 @endsection
